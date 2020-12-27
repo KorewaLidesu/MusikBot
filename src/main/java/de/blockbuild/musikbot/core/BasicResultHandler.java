@@ -1,51 +1,27 @@
 package de.blockbuild.musikbot.core;
 
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
+import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 
-import net.dv8tion.jda.api.entities.TextChannel;
-
 public class BasicResultHandler implements AudioLoadResultHandler {
 
-	private GuildMusicManager musicManager;
-	private TrackScheduler trackScheduler;
+	private final AudioPlayer player;
 
-	public BasicResultHandler(GuildMusicManager musicManager) {
-		this.musicManager = musicManager;
-		this.trackScheduler = musicManager.getTrackScheduler();
+	public BasicResultHandler(AudioPlayer player) {
+		this.player = player;
 	}
 
 	@Override
 	public void trackLoaded(AudioTrack track) {
-		trackScheduler.playTrack(track);
-
-		try {
-			Thread.sleep(300);
-		} catch (InterruptedException ignore) {
-		}
-
-		if (musicManager.config.isNowPlayingTrackEnabled()) {
-			TextChannel tc = musicManager.getGuild()
-					.getTextChannelById(musicManager.config.getNowPlayingTrackTextChannelId());
-
-			tc.sendMessage(trackScheduler.messageNowPlayingTrackShort(musicManager.getAudioPlayer().getPlayingTrack()))
-					.queue(m -> {
-						if (musicManager.config.getMessageDeleteDelay() > 0) {
-							musicManager.deleteMessageLater(tc, m, musicManager.config.getMessageDeleteDelay());
-						}
-					});
-		}
+		player.playTrack(track);
 	}
 
 	@Override
 	public void playlistLoaded(AudioPlaylist playlist) {
-		// player.playTrack(playlist.getTracks().get(0));
-
-		for (AudioTrack track : playlist.getTracks()) {
-			trackScheduler.queueTrack(track);
-		}
+		player.playTrack(playlist.getTracks().get(0));
 	}
 
 	@Override

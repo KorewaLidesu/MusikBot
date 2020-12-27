@@ -4,7 +4,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '4.0.4'}
 
 mainClassName = 'de.blockbuild.musikbot.Main'
-version = '1.2.4'
+version = '1.2.2'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -22,12 +22,13 @@ repositories {
 }
 
 dependencies {
-    compile 'com.sedmelluq:lavaplayer:1.3.65'
-    compile 'com.jagrosh:jda-utilities:3.0.5'
-    compile 'net.dv8tion:JDA:4.2.0_224'
+    compile 'com.sedmelluq:lavaplayer:1.3.50'
+    compile 'com.jagrosh:jda-utilities:2.1.5'
+    compile 'net.dv8tion:JDA:3.8.3_464'
     compile 'org.slf4j:slf4j-simple:1.7.25'
     compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'
     compile 'com.github.breadmoirai:DiscordEmoji:1.1.0'
+    compile group: 'org.yaml', name: 'snakeyaml', version: '1.27'
 
     compileOnly 'org.bukkit:bukkit:1.12.2-R0.1-SNAPSHOT'
 }
@@ -46,7 +47,7 @@ shadowJar {
         exclude(dependency('org.spigotmc:spigot-api:1.12.1-R0.1-SNAPSHOT'))
         exclude(dependency('com.google.guava:guava:21.0'))
         exclude(dependency('org.hamcrest:hamcrest-core:1.1'))
-        exclude(dependency('org.yaml:snakeyaml:1.19'))
+        //exclude(dependency('org.yaml:snakeyaml:1.19'))
         exclude(dependency('commons-lang:commons-lang:2.6'))
     }
     relocate 'org.apache', 'shadow.org.apache'
