@@ -16,9 +16,9 @@ import de.blockbuild.musikbot.Bot;
 import de.blockbuild.musikbot.commands.MusicCommand;
 import de.blockbuild.musikbot.core.TrackScheduler;
 
-import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.exceptions.PermissionException;
+import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.exceptions.PermissionException;
 
 public class PlayCommand extends MusicCommand {
 
@@ -53,7 +53,7 @@ public class PlayCommand extends MusicCommand {
 					if (trackScheduler.playNextTrack()) {
 						// If player don't play but songs are in queue
 						// Could show the wrong track if the next song fail to load
-						trackScheduler.messageNowPlayingTrack(player.getPlayingTrack(), m, null);
+						trackScheduler.messageNowPlayingTrackLong(player.getPlayingTrack(), m, null);
 					} else {
 						m.editMessage(event.getClient().getWarning() + " **Nothing to play at the moment!**").queue();
 					}
@@ -61,7 +61,7 @@ public class PlayCommand extends MusicCommand {
 
 			} else {
 				event.reply(Emoji.MAG_RIGHT.getUtf8() + " Loading...",
-						m -> trackScheduler.messageNowPlayingTrack(player.getPlayingTrack(), m, null));
+						m -> trackScheduler.messageNowPlayingTrackLong(player.getPlayingTrack(), m, null));
 			}
 		} else {
 			final String TrackUrl;
