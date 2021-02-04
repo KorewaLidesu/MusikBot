@@ -1,4 +1,4 @@
 [![Release](https://img.shields.io/github/release/Block-Build/MusikBot.svg)](https://github.com/Block-Build/MusikBot/releases/latest)
 # awau ![GitHub Logo](/src/main/resources/64.png)  
 
-Fork of original.
+a Fork from original.
