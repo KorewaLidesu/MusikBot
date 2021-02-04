@@ -143,8 +143,8 @@ public class Bot {
 		}
 
 		jda.getPresence().setPresence(OnlineStatus.ONLINE, Activity.of(ActivityType.DEFAULT, config.getGame()));
-		if (!jda.getSelfUser().getName().equalsIgnoreCase("MusikBot")) {
-			jda.getSelfUser().getManager().setName("MusikBot").queue();
+		if (!jda.getSelfUser().getName().equalsIgnoreCase("awau")) {
+			jda.getSelfUser().getManager().setName("awau").queue();
 		}
 
 		// Print invite token to console
