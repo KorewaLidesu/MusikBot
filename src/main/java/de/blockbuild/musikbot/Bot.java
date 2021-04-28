@@ -245,6 +245,7 @@ public class Bot {
 				new RautemusikCommand(this), 
 				new RadioBobCommand(this),
 				new RadioMnmCommand(this),
+				new Radio100nlCommand(this),
 				
 				//Connection
 				new JoinCommand(this), 
