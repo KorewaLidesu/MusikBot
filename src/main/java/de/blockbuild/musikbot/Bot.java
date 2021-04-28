@@ -241,7 +241,6 @@ public class Bot {
 				new VersionCommand(this),
   
 				//Radio
-				new Radio100nlCommand(this),
 				new RadioBonnRheinSiegCommand(this), 
 				new RautemusikCommand(this), 
 				new RadioBobCommand(this),
