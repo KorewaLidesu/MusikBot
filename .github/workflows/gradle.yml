@@ -24,6 +24,8 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+    - name: list folder
+      run: ls -l
     - name: Add artifacts to build
       uses: actions/upload-artifact@v2
       with:
