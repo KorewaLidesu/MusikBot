@@ -9,7 +9,6 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-    jcenter()
     mavenCentral()
     maven {
         name 'm2-dv8tion'
@@ -22,10 +21,6 @@ repositories {
         name = 'CodeMC'
         url = 'https://repo.codemc.org/repository/maven-public'
         url 'https://dl.bintray.com/breadmoirai/maven'
-    }
-    maven {
-        name 'm2-dv8tion'
-        url 'https://m2.dv8tion.net/releases'
     }
 }
 
