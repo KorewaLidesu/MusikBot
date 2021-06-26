@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Log level'     
+        description: 'Version'     
         required: true
         default: ''
 
