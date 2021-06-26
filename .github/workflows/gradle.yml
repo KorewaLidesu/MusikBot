@@ -3,17 +3,17 @@
 
 name: Java CI with Gradle
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: 
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Log level'     
+        required: true
+        default: ''
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 1.8
@@ -28,5 +28,24 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: awau bot
-        path: |
-          ${{ github.workspace }}/build/libs/MusikBot-*.jar
+        path: /build/libs/MusikBot-*.jar
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Download built artifacts
+      uses: actions/download-artifact@v2
+    - name: Create GitHub Release
+      uses: meeDamian/github-release@2.0
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: ${{ github.event.inputs.version }}
+        commitish: master
+        name:  ${{ github.event.inputs.version }}
+        prerelease: false
+        allow_override: true
+        gzip: false
+        files: |
+            ./build/libs/LogisticsBridge.jar
+    
